@@ -29,11 +29,14 @@ public:
 	void setGaugeImage(gImage gaugebg, gImage stick);
 
 	int getValue();
+	float getAngle();
+	void setAngle();
 
 private:
-	int min;
-	int max;
+
+	int min, max;
 	int value;
+	float angle;
 	int bgx, bgy, stickx, sticky;
 
 	gImage gaugebg, gaugestick;

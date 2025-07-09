@@ -37,6 +37,7 @@ void gipGauge::setMax(int max) {
 
 void gipGauge::setValue(int value) {
 	this->value = value;
+	setAngle();
 }
 
 int gipGauge::getValue() {
@@ -54,6 +55,7 @@ void gipGauge::increaseValue(int amount) {
 	}else{
 		value += amount;
 	}
+	setAngle();
 }
 
 void gipGauge::decreaseValue(int amount) {
@@ -62,4 +64,13 @@ void gipGauge::decreaseValue(int amount) {
 	}else{
 		value -= amount;
 	}
+	setAngle();
+}
+
+void gipGauge::setAngle(){
+	angle = (value * 180)/max;
+}
+
+float gipGauge::getAngle(){
+	return this->angle;
 }

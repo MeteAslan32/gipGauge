@@ -42,3 +42,24 @@ void gipGauge::setValue(int value) {
 int gipGauge::getValue() {
 	return this->value;
 }
+
+void gipGauge::setGaugeImage(gImage gaugebg, gImage gaugestick) {
+	this->gaugebg = gaugebg;
+	this->gaugestick = gaugestick;
+}
+
+void gipGauge::increaseValue(int amount) {
+	if(value + amount > max){
+		value = max;
+	}else{
+		value += amount;
+	}
+}
+
+void gipGauge::decreaseValue(int amount) {
+	if(value - amount < min){
+		value = min;
+	}else{
+		value -= amount;
+	}
+}

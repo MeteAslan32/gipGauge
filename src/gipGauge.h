@@ -24,12 +24,19 @@ public:
 	void setMin(int min);
 	void setMax(int max);
 	void setValue(int value);
+	void increaseValue(int amount);
+	void decreaseValue(int amount);
+	void setGaugeImage(gImage gaugebg, gImage stick);
+
 	int getValue();
 
 private:
 	int min;
 	int max;
 	int value;
+	int bgx, bgy, stickx, sticky;
+
+	gImage gaugebg, gaugestick;
 };
 
 #endif /* SRC_GIPGAUGE_H_ */

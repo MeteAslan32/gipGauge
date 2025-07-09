@@ -6,12 +6,12 @@
  *      Created by: kayra
  */
 
-#include "gipEmptyPlugin.h"
+#include "gipGauge.h"
 
 
-gipEmptyPlugin::gipEmptyPlugin() {
+gipGauge::gipGauge() {
 }
 
-gipEmptyPlugin::~gipEmptyPlugin() {
+gipGauge::~gipGauge() {
 }
 

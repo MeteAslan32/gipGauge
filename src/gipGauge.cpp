@@ -29,8 +29,11 @@ void gipGauge::update() {
 }
 
 void gipGauge::draw() {
+	renderer->enableAlphaBlending();
+	renderer->setColor(255, 255, 255);
 	gaugebg->draw(bgx,bgy,width,height);
 	gaugestick->draw(bgx+5, bgy-20 ,width,height,angle);
+	renderer->disableAlphaBlending();
 }
 
 void gipGauge::setMin(int min) {

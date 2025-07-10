@@ -21,12 +21,14 @@ public:
 	void update() override;
 	void draw();
 
+	void increaseValue(int amount);
+	void decreaseValue(int amount);
+	void setPosition(int x, int y);
+
 	void setMin(int min);
 	void setMax(int max);
 	void setValue(int value);
-	void increaseValue(int amount);
-	void decreaseValue(int amount);
-	void setGaugeImage(gImage gaugebg, gImage stick);
+	void setGaugeImage(gImage* gaugebg, gImage* stick);
 
 	int getValue();
 	float getAngle();
@@ -36,10 +38,13 @@ private:
 
 	int min, max;
 	int value;
-	float angle;
+	float angle, imageoffset;
 	int bgx, bgy, stickx, sticky;
+	int width, height;
 
-	gImage gaugebg, gaugestick;
+	gImage* gaugebg;
+	gImage* gaugestick;
+
 };
 
 #endif /* SRC_GIPGAUGE_H_ */

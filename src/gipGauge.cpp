@@ -19,12 +19,18 @@ void gipGauge::setup() {
 	value = 0;
 	min = 0;
 	max = 100;
+	width = 400;
+	height = 400;
+	imageoffset = -76; // add to the angle so the angle shows 0 at min
+	angle = imageoffset;
 }
 
 void gipGauge::update() {
 }
 
 void gipGauge::draw() {
+	gaugebg->draw(bgx,bgy,width,height);
+	gaugestick->draw(bgx+5, bgy-20 ,width,height,angle);
 }
 
 void gipGauge::setMin(int min) {
@@ -44,9 +50,10 @@ int gipGauge::getValue() {
 	return this->value;
 }
 
-void gipGauge::setGaugeImage(gImage gaugebg, gImage gaugestick) {
+void gipGauge::setGaugeImage(gImage* gaugebg, gImage* gaugestick) {
 	this->gaugebg = gaugebg;
 	this->gaugestick = gaugestick;
+
 }
 
 void gipGauge::increaseValue(int amount) {
@@ -68,9 +75,17 @@ void gipGauge::decreaseValue(int amount) {
 }
 
 void gipGauge::setAngle(){
-	angle = (value * 180)/max;
+	angle = (value * 240)/max + imageoffset;
 }
 
 float gipGauge::getAngle(){
 	return this->angle;
+}
+
+void gipGauge::setPosition(int x, int y) {
+	bgx = x;
+	bgy = y;
+
+	stickx = x + 10;
+	sticky = y - 20;
 }

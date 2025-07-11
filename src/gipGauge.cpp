@@ -25,7 +25,27 @@ void gipGauge::setup() {
 	angle = imageoffset;
 }
 
-void gipGauge::update() {
+void gipGauge::update(float deltaTime) {
+    if (isanimating) {
+        if (value < targetvalue) {
+            value += animationspeed * deltaTime;
+            if (value > targetvalue) {
+                value = targetvalue;
+                isanimating = false;
+            }
+        }
+        else if (value > targetvalue) {
+            value -= animationspeed * deltaTime;
+            if (value < targetvalue) {
+                value = targetvalue;
+                isanimating = false;
+            }
+        }
+        else {
+            isanimating = false;
+        }
+        setAngle();
+    }
 }
 
 void gipGauge::draw() {
@@ -53,28 +73,63 @@ int gipGauge::getValue() {
 	return this->value;
 }
 
+void gipGauge::setValueSmoothly(int value) {
+    targetvalue = value;
+    isanimating = true;
+}
+
+void gipGauge::setAnimationSpeed(float animationspeed) {
+	this->animationspeed = animationspeed;
+}
+
 void gipGauge::setGaugeImage(gImage* gaugebg, gImage* gaugestick) {
 	this->gaugebg = gaugebg;
 	this->gaugestick = gaugestick;
-
 }
 
 void gipGauge::increaseValue(int amount) {
 	if(value + amount > max){
 		value = max;
+		targetvalue = max;
 	}else{
 		value += amount;
+		targetvalue += amount;
 	}
 	setAngle();
+}
+
+void gipGauge::increaseValueSmoothly(int amount) {
+	if(value + amount > max){
+			targetvalue = max;
+			isanimating = true;
+		}
+	else{
+			targetvalue += amount;
+			isanimating = true;
+		}
 }
 
 void gipGauge::decreaseValue(int amount) {
 	if(value - amount < min){
 		value = min;
-	}else{
-		value -= amount;
+		targetvalue = min;
 	}
-	setAngle();
+	else{
+		value -= amount;
+		targetvalue -= amount;
+	}
+}
+
+void gipGauge::decreaseValueSmoothly(int amount) {
+	if(value - amount < min){
+			targetvalue = min;
+			isanimating = true;
+		}
+	else{
+			targetvalue -= amount;
+			isanimating = true;
+		}
+	//setAngle();
 }
 
 void gipGauge::setAngle(){

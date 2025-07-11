@@ -18,17 +18,22 @@ public:
 	virtual ~gipGauge();
 
 	void setup() override;
-	void update() override;
+	void update(float deltaTime);
 	void draw();
 
 	void increaseValue(int amount);
 	void decreaseValue(int amount);
-	void setPosition(int x, int y);
+	void increaseValueSmoothly(int amount);
+	void decreaseValueSmoothly(int amount);
 
 	void setMin(int min);
 	void setMax(int max);
+	void setPosition(int x, int y);
 	void setValue(int value);
+	void setValueSmoothly(int value);
+	void setAnimationSpeed(float animationspeed);
 	void setGaugeImage(gImage* gaugebg, gImage* stick);
+
 
 	int getValue();
 	float getAngle();
@@ -38,13 +43,17 @@ private:
 
 	int min, max;
 	int value;
+	int targetvalue;
+
 	float angle, imageoffset;
 	int bgx, bgy, stickx, sticky;
 	int width, height;
 
+	float animationspeed = 100;
+	bool isanimating = false;
+
 	gImage* gaugebg;
 	gImage* gaugestick;
-
 };
 
 #endif /* SRC_GIPGAUGE_H_ */

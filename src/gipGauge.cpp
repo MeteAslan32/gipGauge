@@ -73,6 +73,14 @@ int gipGauge::getValue() {
 	return this->value;
 }
 
+int gipGauge::getMax() {
+	return this->max;
+}
+
+int gipGauge::getMin() {
+	return this->min;
+}
+
 void gipGauge::setValueSmoothly(int value) {
     targetvalue = value;
     isanimating = true;
@@ -106,7 +114,7 @@ void gipGauge::increaseValueSmoothly(int amount) {
 	else{
 			targetvalue += amount;
 			isanimating = true;
-		}
+	}
 }
 
 void gipGauge::decreaseValue(int amount) {
@@ -118,6 +126,7 @@ void gipGauge::decreaseValue(int amount) {
 		value -= amount;
 		targetvalue -= amount;
 	}
+	setAngle();
 }
 
 void gipGauge::decreaseValueSmoothly(int amount) {
@@ -129,7 +138,6 @@ void gipGauge::decreaseValueSmoothly(int amount) {
 			targetvalue -= amount;
 			isanimating = true;
 		}
-	//setAngle();
 }
 
 void gipGauge::setAngle(){

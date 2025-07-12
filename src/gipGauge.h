@@ -33,11 +33,12 @@ public:
 	void setValueSmoothly(int value);
 	void setAnimationSpeed(float animationspeed);
 	void setGaugeImage(gImage* gaugebg, gImage* stick);
-
+	void setAngle();
 
 	int getValue();
+	int getMax();
+	int getMin();
 	float getAngle();
-	void setAngle();
 
 private:
 

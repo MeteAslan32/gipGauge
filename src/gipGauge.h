@@ -34,6 +34,7 @@ public:
 	void setAnimationSpeed(float animationspeed);
 	void setGaugeImage(gImage* gaugebg, gImage* stick);
 	void setAngle();
+	void setSize(int width, int height);
 
 	int getValue();
 	int getMax();
@@ -47,7 +48,7 @@ private:
 	int targetvalue;
 
 	float angle, imageoffset;
-	int bgx, bgy, stickx, sticky;
+	int bgx, bgy;
 	int width, height;
 
 	float animationspeed = 100;

@@ -51,8 +51,9 @@ void gipGauge::update(float deltaTime) {
 void gipGauge::draw() {
 	renderer->enableAlphaBlending();
 	renderer->setColor(255, 255, 255);
-	gaugebg->draw(bgx,bgy,width,height);
-	gaugestick->draw(bgx+5, bgy-20 ,width,height,angle);
+	gaugebg->draw(bgx, bgy, width, height);
+	//gaugestick->draw(bgx, bgy-15 ,width,height,angle);
+	gaugestick->draw(bgx, bgy - height * 18/400, width, height, angle);
 	renderer->disableAlphaBlending();
 }
 
@@ -151,7 +152,9 @@ float gipGauge::getAngle(){
 void gipGauge::setPosition(int x, int y) {
 	bgx = x;
 	bgy = y;
+}
 
-	stickx = x + 10;
-	sticky = y - 20;
+void gipGauge::setSize(int width, int height) {
+	this->width = width;
+	this->height = height;
 }

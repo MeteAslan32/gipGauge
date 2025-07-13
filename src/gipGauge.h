@@ -38,6 +38,8 @@ public:
 	void setSize(int width, int height);
 
 	void setText(std::string text);
+	void setMinText(std::string text);
+	void setMaxText(std::string text);
 
 	int getValue();
 	int getMax();
@@ -53,6 +55,7 @@ private:
 	float angle, imageoffset;
 	int bgx, bgy;
 	int rectanglex, rectangley;
+	int mintextx, mintexty, maxtextx, maxtexty;
 	int rectanglew, rectangleh;
 	int width, height;
 
@@ -63,6 +66,9 @@ private:
 	gImage* gaugestick;
 
 	std::string text;
+	std::string mintext;
+	std::string maxtext;
+
 	gFont textfont;
 };
 

@@ -55,12 +55,17 @@ void gipGauge::draw() {
 	renderer->enableAlphaBlending();
 	renderer->setColor(255, 255, 255);
 	gaugebg->draw(bgx, bgy, width, height);
+
+	renderer->setColor(0, 0, 0);
+	textfont.drawText(gToStr(min), mintextx , mintexty + height * 12/100);
+	textfont.drawText(gToStr(max), maxtextx , maxtexty + height * 12/100);
+
+	renderer->setColor(255, 255, 255);
 	gaugestick->draw(bgx, bgy - height * 18/400, width, height, angle);
 
 	renderer->setColor(0, 0, 0);
 	gDrawRectangle(rectanglex, rectangley, rectanglew, rectangleh, false);
 
-	renderer->setColor(0,0,0);
 	textfont.drawText(gToStr(value), rectanglex , rectangley + rectangleh * 70/100);
 
 	renderer->disableAlphaBlending();
@@ -165,6 +170,12 @@ void gipGauge::setPosition(int x, int y) {
 
 	rectanglex = x + width * 37/100;
 	rectangley = y + height * 60/100;
+
+	mintextx = x + width * 20/100;
+	mintexty = y + height * 50/100;
+
+	maxtextx = x + width * 62/100;
+	maxtexty = y + height * 50/100;
 }
 
 void gipGauge::setSize(int width, int height) {
@@ -180,3 +191,12 @@ void gipGauge::setSize(int width, int height) {
 void gipGauge::setText(std::string text) {
 	this->text = text;
 }
+
+void gipGauge::setMinText(std::string text) {
+	mintext = text;
+}
+
+void gipGauge::setMaxText(std::string text) {
+	maxtext = text;
+}
+

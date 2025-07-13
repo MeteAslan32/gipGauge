@@ -22,7 +22,7 @@ void gipGauge::setup() {
 	width = 400;
 	height = 400;
 	imageoffset = -76; // add to the angle so the angle shows 0 at min
-	angle = imageoffset;
+	shownangle = angle + imageoffset;
 	textfont.loadFont("FreeSans.ttf", 20);
 
 	setText(gToStr(value));
@@ -61,7 +61,7 @@ void gipGauge::draw() {
 	textfont.drawText(gToStr(max), maxtextx , maxtexty + height * 12/100);
 
 	renderer->setColor(255, 255, 255);
-	gaugestick->draw(bgx, bgy - height * 18/400, width, height, angle);
+	gaugestick->draw(bgx, bgy - height * 18/400, width, height, shownangle);
 
 	renderer->setColor(0, 0, 0);
 	gDrawRectangle(rectanglex, rectangley, rectanglew, rectangleh, false);
@@ -69,7 +69,6 @@ void gipGauge::draw() {
 	textfont.drawText(gToStr(value), rectanglex , rectangley + rectangleh * 70/100);
 
 	renderer->disableAlphaBlending();
-
 }
 
 void gipGauge::setMin(int min) {
@@ -157,7 +156,8 @@ void gipGauge::decreaseValueSmoothly(int amount) {
 }
 
 void gipGauge::setAngle(){
-	angle = (value * 240)/max + imageoffset;
+	angle = (value * 240)/max;
+	shownangle = angle + imageoffset;
 }
 
 float gipGauge::getAngle(){

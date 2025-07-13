@@ -10,6 +10,7 @@
 #define SRC_GIPGAUGE_H_
 
 #include "gBasePlugin.h"
+#include <string>
 
 
 class gipGauge : public gBasePlugin{
@@ -36,6 +37,8 @@ public:
 	void setAngle();
 	void setSize(int width, int height);
 
+	void setText(std::string text);
+
 	int getValue();
 	int getMax();
 	int getMin();
@@ -49,6 +52,8 @@ private:
 
 	float angle, imageoffset;
 	int bgx, bgy;
+	int rectanglex, rectangley;
+	int rectanglew, rectangleh;
 	int width, height;
 
 	float animationspeed = 100;
@@ -56,6 +61,9 @@ private:
 
 	gImage* gaugebg;
 	gImage* gaugestick;
+
+	std::string text;
+	gFont textfont;
 };
 
 #endif /* SRC_GIPGAUGE_H_ */

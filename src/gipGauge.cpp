@@ -23,6 +23,9 @@ void gipGauge::setup() {
 	height = 400;
 	imageoffset = -76; // add to the angle so the angle shows 0 at min
 	angle = imageoffset;
+	textfont.loadFont("FreeSans.ttf", 20);
+
+	setText(gToStr(value));
 }
 
 void gipGauge::update(float deltaTime) {
@@ -52,9 +55,16 @@ void gipGauge::draw() {
 	renderer->enableAlphaBlending();
 	renderer->setColor(255, 255, 255);
 	gaugebg->draw(bgx, bgy, width, height);
-	//gaugestick->draw(bgx, bgy-15 ,width,height,angle);
 	gaugestick->draw(bgx, bgy - height * 18/400, width, height, angle);
+
+	renderer->setColor(0, 0, 0);
+	gDrawRectangle(rectanglex, rectangley, rectanglew, rectangleh, false);
+
+	renderer->setColor(0,0,0);
+	textfont.drawText(gToStr(value), rectanglex , rectangley + rectangleh * 70/100);
+
 	renderer->disableAlphaBlending();
+
 }
 
 void gipGauge::setMin(int min) {
@@ -152,9 +162,21 @@ float gipGauge::getAngle(){
 void gipGauge::setPosition(int x, int y) {
 	bgx = x;
 	bgy = y;
+
+	rectanglex = x + width * 37/100;
+	rectangley = y + height * 60/100;
 }
 
 void gipGauge::setSize(int width, int height) {
 	this->width = width;
 	this->height = height;
+
+	rectanglew = width/4;
+	rectangleh = height/6;
+
+	textfont.loadFont("FreeSans.ttf", rectangleh / 2);
+}
+
+void gipGauge::setText(std::string text) {
+	this->text = text;
 }

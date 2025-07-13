@@ -21,6 +21,8 @@ void gipGauge::setup() {
 	max = 100;
 	width = 400;
 	height = 400;
+	startangle = 0.0f;
+	endangle = 240.0f;
 	imageoffset = -76; // add to the angle so the angle shows 0 at min
 	shownangle = angle + imageoffset;
 	textfont.loadFont("FreeSans.ttf", 20);
@@ -156,7 +158,9 @@ void gipGauge::decreaseValueSmoothly(int amount) {
 }
 
 void gipGauge::setAngle(){
-	angle = (value * 240)/max;
+	float normalized = (float)(value - min) / (max - min); // value from 0 to 1
+	angle = startangle + normalized * (endangle - startangle);
+
 	shownangle = angle + imageoffset;
 }
 
@@ -169,7 +173,7 @@ void gipGauge::setPosition(int x, int y) {
 	bgy = y;
 
 	rectanglex = x + width * 37/100;
-	rectangley = y + height * 60/100;
+	rectangley = y + height * 67/100;
 
 	mintextx = x + width * 20/100;
 	mintexty = y + height * 50/100;

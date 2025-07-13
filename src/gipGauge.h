@@ -52,7 +52,7 @@ private:
 	int value;
 	int targetvalue;
 
-	float angle, shownangle ,imageoffset;
+	float angle, startangle, endangle, shownangle, imageoffset;
 	int bgx, bgy;
 	int rectanglex, rectangley;
 	int mintextx, mintexty, maxtextx, maxtexty;

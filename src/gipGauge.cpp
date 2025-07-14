@@ -23,7 +23,7 @@ void gipGauge::setup() {
 	height = 400;
 	startangle = 0.0f;
 	endangle = 240.0f;
-	imageoffset = -76; // add to the angle so the angle shows 0 at min
+	imageoffset = -75; // add to the angle so the angle shows 0 at min
 	shownangle = angle + imageoffset;
 	textfont.loadFont("FreeSans.ttf", 20);
 
@@ -173,7 +173,7 @@ void gipGauge::setPosition(int x, int y) {
 	bgx = x;
 	bgy = y;
 
-	stickx = bgx + width * 24/100;
+	stickx = bgx + width * 23/100;
 	sticky = bgy + height * 24/100;
 
 	rectanglex = x + width * 37/100;

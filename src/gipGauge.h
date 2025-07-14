@@ -54,6 +54,7 @@ private:
 
 	float angle, startangle, endangle, shownangle, imageoffset;
 	int bgx, bgy;
+	int stickx, sticky;
 	int rectanglex, rectangley;
 	int mintextx, mintexty, maxtextx, maxtexty;
 	int rectanglew, rectangleh;

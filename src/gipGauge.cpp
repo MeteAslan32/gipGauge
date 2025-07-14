@@ -63,7 +63,8 @@ void gipGauge::draw() {
 	textfont.drawText(gToStr(max), maxtextx , maxtexty + height * 12/100);
 
 	renderer->setColor(255, 255, 255);
-	gaugestick->draw(bgx, bgy - height * 18/400, width, height, shownangle);
+	//gaugestick->draw(bgx + width * 22/100, bgy + height * 40/100, width/3, height/3, shownangle);
+	gaugestick->draw(stickx, sticky, width/3, height/3, width * 53/200, height * 53/200,  shownangle);
 
 	renderer->setColor(0, 0, 0);
 	gDrawRectangle(rectanglex, rectangley, rectanglew, rectangleh, false);
@@ -172,14 +173,17 @@ void gipGauge::setPosition(int x, int y) {
 	bgx = x;
 	bgy = y;
 
-	rectanglex = x + width * 37/100;
-	rectangley = y + height * 67/100;
+	stickx = bgx + width * 24/100;
+	sticky = bgy + height * 24/100;
 
-	mintextx = x + width * 20/100;
-	mintexty = y + height * 50/100;
+	rectanglex = x + width * 37/100;
+	rectangley = y + height * 70/100;
+
+	mintextx = x + width * 17/100;
+	mintexty = y + height * 55/100;
 
 	maxtextx = x + width * 62/100;
-	maxtexty = y + height * 50/100;
+	maxtexty = y + height * 55/100;
 }
 
 void gipGauge::setSize(int width, int height) {

@@ -16,14 +16,30 @@ gipGauge::~gipGauge() {
 }
 
 void gipGauge::setup() {
-	value = 0;
 	min = 0;
 	max = 100;
+	value = min;
 	width = 400;
 	height = 400;
-	startangle = 0.0f;
-	endangle = 240.0f;
-	imageoffset = -75; // add to the angle so the angle shows 0 at min
+
+    if (type != DEFAULT && type != ALT1 && type != ALT2) {
+        type = DEFAULT;
+    }
+	if(type == DEFAULT){
+
+		startangle = 0.0f;
+		endangle = 240.0f;
+		imageoffset = -75; // add to the angle so the angle shows 0 at min
+	}
+	else if(type == ALT1){
+
+
+	}
+	else if(type == ALT2){
+
+
+	}
+
 	shownangle = angle + imageoffset;
 	textfont.loadFont("FreeSans.ttf", 20);
 
@@ -208,3 +224,6 @@ void gipGauge::setMaxText(std::string text) {
 	maxtext = text;
 }
 
+void gipGauge::setGaugeType(GaugeType type) {
+	this->type = type;
+}

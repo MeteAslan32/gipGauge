@@ -18,6 +18,12 @@ public:
 	gipGauge();
 	virtual ~gipGauge();
 
+	enum GaugeType{
+			DEFAULT,
+			ALT1,
+			ALT2
+	};
+
 	void setup() override;
 	void update(float deltaTime);
 	void draw();
@@ -26,6 +32,8 @@ public:
 	void decreaseValue(int amount);
 	void increaseValueSmoothly(int amount);
 	void decreaseValueSmoothly(int amount);
+
+	void setGaugeType(GaugeType type);
 
 	void setMin(int min);
 	void setMax(int max);
@@ -48,6 +56,8 @@ public:
 
 private:
 
+
+	GaugeType type;
 	int min, max;
 	int value;
 	int targetvalue;

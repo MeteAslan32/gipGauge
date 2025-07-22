@@ -24,7 +24,7 @@ public:
 			ALT2
 	};
 
-	void setup() override;
+	void setup(GaugeType type);
 	void update(float deltaTime);
 	void draw();
 

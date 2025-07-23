@@ -34,8 +34,8 @@ void gipGauge::setup(GaugeType type) {
 	}
 
 	else if(type == ALT1){
-		endangle = 240.0f;
-		imageoffset = -75; // add to the angle so the angle shows 0 at min
+		endangle = 283.0f; //thats weird
+		imageoffset = -186; // add to the angle so the angle shows 0 at min
 	}
 
 	else if(type == ALT2){
@@ -79,50 +79,38 @@ void gipGauge::draw() {
 
 	if(type == DEFAULT){
 		renderer->setColor(0, 0, 0);
-			textfont.drawText(gToStr(min), mintextx , mintexty);
-			textfont.drawText(gToStr(max), maxtextx , maxtexty);
+		textfont.drawText(gToStr(min), mintextx , mintexty);
+		textfont.drawText(gToStr(max), maxtextx , maxtexty);
 
-			renderer->setColor(255, 255, 255);
-			//gaugestick->draw(bgx + width * 22/100, bgy + height * 40/100, width/3, height/3, shownangle);
-			//gaugestick->draw(x, y, w, h, pivotx, pivoty, rotate)
-			gaugestick->draw(stickx, sticky, width/3, height/3, width * 53/200, height * 53/200,  shownangle);
+		gDrawRectangle(rectanglex, rectangley, rectanglew, rectangleh, false);
 
-			renderer->setColor(0, 0, 0);
-			gDrawRectangle(rectanglex, rectangley, rectanglew, rectangleh, false);
+		textfont.drawText(gToStr(value), rectanglex , rectangley + rectangleh * 60/100);
 
-			textfont.drawText(gToStr(value), rectanglex , rectangley + rectangleh * 70/100);
+		renderer->setColor(255, 255, 255);;
+		gaugestick->draw(stickx, sticky, width/3, height/3, width * 53/200, height * 53/200,  shownangle);
 	}
 
 	if(type == ALT1){
-		renderer->setColor(0, 0, 0);
-			textfont.drawText(gToStr(min), mintextx , mintexty + height * 12/100);
-			textfont.drawText(gToStr(max), maxtextx , maxtexty + height * 12/100);
+		renderer->setColor(255, 255, 255);
+		textfont.drawText(gToStr(min), mintextx , mintexty);
+		textfont.drawText(gToStr(max), maxtextx , maxtexty);
 
-			renderer->setColor(255, 255, 255);
-			//gaugestick->draw(bgx + width * 22/100, bgy + height * 40/100, width/3, height/3, shownangle);
-			//gaugestick->draw(x, y, w, h, pivotx, pivoty, rotate)
-			gaugestick->draw(stickx, sticky, width/3, height/3, width * 53/200, height * 53/200,  shownangle);
+		gDrawRectangle(rectanglex, rectangley, rectanglew, rectangleh, false);
+		textfont.drawText(gToStr(value), rectanglex + rectanglew * 10/100 , rectangley + rectangleh * 60/100);
 
-			renderer->setColor(0, 0, 0);
-			gDrawRectangle(rectanglex, rectangley, rectanglew, rectangleh, false);
-
-			textfont.drawText(gToStr(value), rectanglex , rectangley + rectangleh * 70/100);
+		gaugestick->draw(stickx, sticky, width/3, height/3, width * 12/100, height * 43/200,  shownangle);
 	}
 
 	if(type == ALT2){
 		renderer->setColor(0, 0, 0);
-			textfont.drawText(gToStr(min), mintextx , mintexty);
-			textfont.drawText(gToStr(max), maxtextx , maxtexty);
+		textfont.drawText(gToStr(min), mintextx , mintexty);
+		textfont.drawText(gToStr(max), maxtextx , maxtexty);
 
-			renderer->setColor(255, 255, 255);
-			//gaugestick->draw(bgx + width * 22/100, bgy + height * 40/100, width/3, height/3, shownangle);
-			//gaugestick->draw(x, y, w, h, pivotx, pivoty, rotate)
-			gaugestick->draw(stickx, sticky, width/3, height/3, width * 12/100 , height * 12/100,  shownangle);
+		gDrawRectangle(rectanglex, rectangley, rectanglew, rectangleh, false);
+		textfont.drawText(gToStr(value), rectanglex, rectangley + rectangleh * 60/100);
 
-			renderer->setColor(0, 0, 0);
-			gDrawRectangle(rectanglex, rectangley, rectanglew, rectangleh, false);
-
-			textfont.drawText(gToStr(value), rectanglex + rectanglew * 19/100 , rectangley + rectangleh * 68/100);
+		renderer->setColor(255, 255, 255);
+		gaugestick->draw(stickx, sticky, width/3, height/3, width * 12/100 , height * 12/100,  shownangle);
 	}
 
 	renderer->disableAlphaBlending();
@@ -240,24 +228,26 @@ void gipGauge::setPosition(int x, int y) {
 		maxtextx = x + width * 62/100;
 		maxtexty = y + height * 67/100;
 	}
-	else if(type == ALT1){
-		stickx = bgx + width * 23/100;
-		sticky = bgy + height * 24/100;
 
-		rectanglex = x + width * 37/100;
+	else if(type == ALT1){
+		stickx = bgx + width * 38/100;
+		sticky = bgy + height * 28/100;
+
+		rectanglex = x + width * 42/100;
 		rectangley = y + height * 70/100;
 
-		mintextx = x + width * 17/100;
-		mintexty = y + height * 55/100;
+		mintextx = x + width * 27/100;
+		mintexty = y + height * 70/100;
 
 		maxtextx = x + width * 62/100;
-		maxtexty = y + height * 55/100;
+		maxtexty = y + height * 70/100;
 	}
+
 	else if(type == ALT2){
 		stickx = bgx + width * 38/100;
 		sticky = bgy + height * 37/100;
 
-		rectanglex = x + width * 36/100;
+		rectanglex = x + width * 40/100;
 		rectangley = y + height * 70/100;
 
 		mintextx = x + width * 20/100;
@@ -266,7 +256,6 @@ void gipGauge::setPosition(int x, int y) {
 		maxtextx = x + width * 62/100;
 		maxtexty = y + height * 71/100;
 	}
-
 }
 
 void gipGauge::setSize(int width, int height) {
@@ -278,17 +267,18 @@ void gipGauge::setSize(int width, int height) {
 		rectangleh = height/6;
 		textfont.loadFont("FreeSans.ttf", rectangleh / 2);
 	}
+
 	else if(type == ALT1){
-		rectanglew = width/4;
-		rectangleh = height/6;
-		textfont.loadFont("FreeSans.ttf", rectangleh / 2);
-	}
-	else if(type == ALT2){
-		rectanglew = width/4;
-		rectangleh = height/6;
+		rectanglew = width/6;
+		rectangleh = height/8;
 		textfont.loadFont("FreeSans.ttf", rectangleh / 3);
 	}
 
+	else if(type == ALT2){
+		rectanglew = width/5;
+		rectangleh = height/6;
+		textfont.loadFont("FreeSans.ttf", rectangleh / 3);
+	}
 }
 
 void gipGauge::setText(std::string text) {
@@ -303,6 +293,3 @@ void gipGauge::setMaxText(std::string text) {
 	maxtext = text;
 }
 
-void gipGauge::setGaugeType(GaugeType type) {
-	this->type = type;
-}

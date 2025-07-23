@@ -33,8 +33,6 @@ public:
 	void increaseValueSmoothly(int amount);
 	void decreaseValueSmoothly(int amount);
 
-	void setGaugeType(GaugeType type);
-
 	void setMin(int min);
 	void setMax(int max);
 	void setPosition(int x, int y);
